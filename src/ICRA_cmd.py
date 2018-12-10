@@ -8,12 +8,12 @@ __date__ = 'Oct 1st 2018'
 
     
 def _addargs(parser):
-    parser.add_argument('outfol', help = 'Where to write results', required = True)
-    parser.add_argument('fq', help = 'Name of the fastq file, without the extension. For PE file, _1.fastq or _2.fastq will be appended to what you supply here. For SE, .fastq will', required = True)
+    parser.add_argument('outfol', help = 'Where to write results')
+    parser.add_argument('fq', help = 'Name of the fastq file, without the extension. For PE file, _1.fastq or _2.fastq will be appended to what you supply here. For SE, .fastq will')
     parser.add_argument('--pe', help = 'Whether paired end or single end', action = 'store_true')
     parser.add_argument('--max_mismatch', help = 'How many mismatch are considered acceptable', default = 8, type = int)
     
-    parser.add_argument('--ignore_lengths', help = 'Should genome lengths be ignored when calculating abundances', default = True, type = bool, action = 'store_false' )
+    parser.add_argument('--ignore_lengths', help = 'Should genome lengths be ignored when calculating abundances', default = True, action = 'store_false' )
     
     parser.add_argument('--epsilon', help = 'The stop criteria. Epsilon is the euclidean distance between the internal vectors of element abundances under which ICRA stops.', default = 1e-6, type = float)
     
