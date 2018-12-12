@@ -1,4 +1,4 @@
-# ICRA and SGV-Finder
+# ICRA and SGVFinder
 
 This code corrects read assignments by coverage based redistribution
 of ambiguously mapped reads. It then uses these correded assignments
