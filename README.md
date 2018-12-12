@@ -31,8 +31,10 @@ microbiome associates with host metabolic health", TBP.
 
 1. Download the files from https://weizmann.box.com/v/SGVF-DataFiles 
    to the folder containing the code files. 
-2. cat the files to a single archive, using: ```
-   cat DataFiles.tar.gz.xaa DataFiles.tar.gz.xab DataFiles.tar.gz.xac DataFiles.tar.gz.xad > DataFiles.tar.gz```
+2. cat the files to a single archive, using: 
+```
+   cat DataFiles.tar.gz.xaa DataFiles.tar.gz.xab DataFiles.tar.gz.xac DataFiles.tar.gz.xad > DataFiles.tar.gz
+```
 3. Extract DataFiles.tar.gz in the folder containing the code. 
 4. From the cy_ext subfolder, run python setup.py build_ext.
 
@@ -41,9 +43,9 @@ microbiome associates with host metabolic health", TBP.
 There are two main algorithms here - ICRA and SGVFinder.
 
 ### ICRA
-ICRA has just a single method needed to operate it - single_file. You 
+ICRA has just a single method needed to operate it - ```single_file```. You 
 can use it directly from python (recommended), or run it using the 
-command-line wrapper ICRA_cmd.py. This method takes in a (/pair of) 
+command-line wrapper ```ICRA_cmd.py```. This method takes in a (/pair of) 
 fastq files and outputs a jsdel file. This file is a json file saved
 with python's ujson package. It's a dictionary whose keys are the fastq
 read ids, and the values are mapping lists. Each such mapping list is
@@ -56,20 +58,20 @@ You should run that method on each and every sample in your cohort.
 ### SGVFinder
 SGVFinder has two stages, and hence two methods:
 
-get_sample_map - generates coverage maps ber bacteria per sample. You 
+```get_sample_map``` - generates coverage maps ber bacteria per sample. You 
 can use it directly from python, or run it using the command-line 
-wrapper SGVF_PerFile_cmd. You should run this method on the jsdel file
+wrapper ```SGVF_PerFile_cmd.py```. You should run this method on the jsdel file
 of each and every sample in your cohort.
 
-work_on_collection - generates the SGV dataframes. You can use it
-directly from python or run it using the command-line wrapper SGVF_cmd.
+```work_on_collection``` - generates the SGV dataframes. You can use it
+directly from python or run it using the command-line wrapper ```SGVF_cmd.py```.
 You should only run this method once. It takes as input a dictionary
 whose keys are the sample names and whose values are the sample_maps 
-generated using get_sample_map. This is generated automatically from a
+generated using ```get_sample_map```. This is generated automatically from a
 glob string with the command-line wrapper.
 
 NOTE: SGVFinder WILL NOT work on a single sample. If you have a small 
-cohort we recommend changing the min_samp_cutoff or running with --byorig.
+cohort we recommend changing the ```min_samp_cutoff``` or running with ```--byorig```.
 
 
 **See the linear_example.py for a non-parallelized simple implementation.**
