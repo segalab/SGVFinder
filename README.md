@@ -36,7 +36,7 @@ microbiome associates with host metabolic health", TBP.
    cat DataFiles.tar.gz.xaa DataFiles.tar.gz.xab DataFiles.tar.gz.xac DataFiles.tar.gz.xad > DataFiles.tar.gz
 ```
 3. Extract DataFiles.tar.gz in the folder containing the code. 
-4. From the cy_ext subfolder, run python setup.py build_ext.
+4. From the ```cy_ext``` subfolder, run ```python setup.py build_ext```.
 
 ## Usage
 
@@ -70,7 +70,7 @@ whose keys are the sample names and whose values are the sample_maps
 generated using ```get_sample_map```. This is generated automatically from a
 glob string with the command-line wrapper.
 
-NOTE: SGVFinder WILL NOT work on a single sample. If you have a small 
+**NOTE:** SGVFinder WILL NOT work on a single sample. If you have a small 
 cohort we recommend changing the ```min_samp_cutoff``` or running with ```--byorig```.
 
 
