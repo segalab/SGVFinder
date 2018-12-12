@@ -31,8 +31,8 @@ microbiome associates with host metabolic health", TBP.
 
 1. Download the files from https://weizmann.box.com/v/SGVF-DataFiles 
    to the folder containing the code files. 
-2. cat the files to a single archive, using:
-   cat DataFiles.tar.gz.xaa DataFiles.tar.gz.xab DataFiles.tar.gz.xac DataFiles.tar.gz.xad > DataFiles.tar.gz
+2. cat the files to a single archive, using: ```
+   cat DataFiles.tar.gz.xaa DataFiles.tar.gz.xab DataFiles.tar.gz.xac DataFiles.tar.gz.xad > DataFiles.tar.gz```
 3. Extract DataFiles.tar.gz in the folder containing the code. 
 4. From the cy_ext subfolder, run python setup.py build_ext.
 
