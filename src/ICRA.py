@@ -179,17 +179,17 @@ def _get_opt_gigar_array(seqdict, dest_id, strand, pos, mismatches, seq, gigar):
         return gqa.create_gigar_array(gigar), 0
   
 def C_CamidDBDict():
-    return CSeqDict.CSeqDict(join(split(realpath(__file__))[0], '2017-10-CAMI_genomes.filtered.if_ujsn'), 9e9)
+    return CSeqDict.CSeqDict(join(split(realpath(__file__))[0], 'DataFiles/2017-10-CAMI_genomes.filtered.if_ujsn'), 9e9)
 
 def C_EmblDB():
-    return CSeqDict.CSeqDict(join(split(realpath(__file__))[0], 'representatives.contigs.drepped.if_ujsn'), 18e9)
+    return CSeqDict.CSeqDict(join(split(realpath(__file__))[0], 'DataFiles/representatives.contigs.drepped.if_ujsn'), 18e9)
 
-cami_index = [join(split(realpath(__file__))[0], '2017-10-CAMI_genomes.filtered.gem')]
+cami_index = [join(split(realpath(__file__))[0], 'DataFiles/2017-10-CAMI_genomes.filtered.gem')]
 
-cami_destdictf = join(split(realpath(__file__))[0], '2017-10-CAMI_genomes.filtered.dests')
+cami_destdictf = join(split(realpath(__file__))[0], 'DataFiles/2017-10-CAMI_genomes.filtered.dests')
 
-genomes_index = sorted(glob(join(split(realpath(__file__))[0], 'GEMSplit/*.gem')))
+genomes_index = sorted(glob(join(split(realpath(__file__))[0], 'DataFiles/GEMSplit/*.gem')))
 
-genomes_destdictf = join(split(realpath(__file__))[0], 'representatives.contigs.drepped.dests')
+genomes_destdictf = join(split(realpath(__file__))[0], 'DataFiles/representatives.contigs.drepped.dests')
 
     

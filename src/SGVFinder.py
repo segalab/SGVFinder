@@ -431,6 +431,6 @@ def draw_one_region(bacname, binsize, taxonomy, normdf,
         else:
             bpl.save(column(p1, p2))
 
-lengthdbpath = join(split(realpath(__file__))[0], 'representatives.contigs.drepped.dlen')
-taxonomypath = join(split(realpath(__file__))[0], 'representatives.genomes.taxonomy.df')
-genepospath = join(split(realpath(__file__))[0], 'representatives.genes.annotations.df')
+lengthdbpath = join(split(realpath(__file__))[0], 'DataFiles/representatives.contigs.drepped.dlen')
+taxonomypath = join(split(realpath(__file__))[0], 'DataFiles/representatives.genomes.taxonomy.df')
+genepospath = join(split(realpath(__file__))[0], 'DataFiles/representatives.genes.drepped.annotations.df')
