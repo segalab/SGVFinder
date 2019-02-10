@@ -1,11 +1,11 @@
-# ICRA and SGVFinder
+# ICRA and SVFinder
 
 This code corrects read assignments by coverage based redistribution
 of ambiguously mapped reads. It then uses these correded assignments
-to detect subgenomic regions that are either variable across a cohort
+to detect structural variants that are either variable across a cohort
 or deleted across 25-75% of it. 
-This code was used for the paper "Sub-genomic variation in the gut 
-microbiome associates with host metabolic health", TBP. 
+This code was used for the paper "Structural variation in the gut 
+microbiome associates with host health", TBP. 
 
 
 ## Requirements
@@ -40,7 +40,7 @@ microbiome associates with host metabolic health", TBP.
 
 ## Usage
 
-There are two main algorithms here - ICRA and SGVFinder.
+There are two main algorithms here - ICRA and SVFinder.
 
 ### ICRA
 ICRA has just a single method needed to operate it - ```single_file```. You 
@@ -55,22 +55,22 @@ second read (-1 if SE), the probablity ICRA gives to this mapping,
 and the mapping quality.
 You should run that method on each and every sample in your cohort.
 
-### SGVFinder
-SGVFinder has two stages, and hence two methods:
+### SVFinder
+SVFinder has two stages, and hence two methods:
 
 ```get_sample_map``` - generates coverage maps ber bacteria per sample. You 
 can use it directly from python, or run it using the command-line 
-wrapper ```SGVF_PerFile_cmd.py```. You should run this method on the jsdel file
+wrapper ```SVF_PerFile_cmd.py```. You should run this method on the jsdel file
 of each and every sample in your cohort.
 
-```work_on_collection``` - generates the SGV dataframes. You can use it
-directly from python or run it using the command-line wrapper ```SGVF_cmd.py```.
+```work_on_collection``` - generates the SV dataframes. You can use it
+directly from python or run it using the command-line wrapper ```SVF_cmd.py```.
 You should only run this method once. It takes as input a dictionary
 whose keys are the sample names and whose values are the sample_maps 
 generated using ```get_sample_map```. This is generated automatically from a
 glob string with the command-line wrapper.
 
-**NOTE:** SGVFinder WILL NOT work on a single sample. If you have a small 
+**NOTE:** SVFinder WILL NOT work on a single sample. If you have a small 
 cohort we recommend changing the ```min_samp_cutoff``` or running with ```--byorig```.
 
 
