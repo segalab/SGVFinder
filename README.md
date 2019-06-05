@@ -35,6 +35,7 @@ microbiome associates with host health", TBP.
 ```
    cat DataFiles.tar.gz.xaa DataFiles.tar.gz.xab DataFiles.tar.gz.xac DataFiles.tar.gz.xad > DataFiles.tar.gz
 ```
+1+2b. Alternatively, DataFiles.tar.gz are available via Zenodo, at https://zenodo.org/record/3237975#.XPc0uJxRWhc
 3. Extract DataFiles.tar.gz in the folder containing the code. 
 4. From the ```cy_ext``` subfolder, run ```python setup.py build_ext```.
 
