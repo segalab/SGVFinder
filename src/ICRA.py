@@ -1,5 +1,5 @@
 from glob import glob
-from os.path import join, split, basename, realpath
+from os.path import join, split, basename, realpath, exists, splitext
 import logging
 import numpy as np
 from datetime import datetime
@@ -21,11 +21,14 @@ def single_file(fq1, fq2, outfol, max_mismatch, consider_lengths, epsilon, \
                 min_reads = 5, dense_region_coverage = 60, length_minimum = 300, \
                 length_maximum = 1e6, usage = 'cami', use_theta = False):
     assert usage in {CAMI, GENOMES}
+    log_.debug('Loading database...')
     seqdict = C_CamidDBDict() if usage == CAMI else C_EmblDB() 
     indexl = cami_index if usage == CAMI else genomes_index 
     dest_dictf =  cami_destdictf if usage == CAMI else genomes_destdictf
     pmpf = join(outfol, basename(fq1).replace('_1.fastq', '.pmp').replace('.fastq', '.pmp'))
-    gemmap_single_file(fq1, fq2, pmpf, indexl, seqdict, 0.05, 0.05, 2) 
+    log_.debug('Loaded. Mapping file...')
+    gemmap_single_file(fq1, fq2, pmpf, indexl, seqdict, 0.05, 0.05, 2)
+    log_.debug('Mapped. Running ICRA...') 
     read_container, pi, theta1, average_read_length, lengthdb = \
         _initialize(fq1, fq2, pmpf, seqdict, max_mismatch, consider_lengths, \
                     length_minimum, length_maximum, min_reads, min_bins, max_bins, \
@@ -179,17 +182,23 @@ def _get_opt_gigar_array(seqdict, dest_id, strand, pos, mismatches, seq, gigar):
         return gqa.create_gigar_array(gigar), 0
   
 def C_CamidDBDict():
-    return CSeqDict.CSeqDict(join(split(realpath(__file__))[0], 'DataFiles/2017-10-CAMI_genomes.filtered.if_ujsn'), 9e9)
+    pth = join(split(realpath(__file__))[0], '../DataFiles/2017-10-CAMI_genomes.filtered.if_ujsn')
+    assert exists(pth), 'Could not find database file at ' + pth
+    return CSeqDict.CSeqDict(pth, 9e9)
 
 def C_EmblDB():
-    return CSeqDict.CSeqDict(join(split(realpath(__file__))[0], 'DataFiles/representatives.contigs.drepped.if_ujsn'), 18e9)
+    pth = join(split(realpath(__file__))[0], '../DataFiles/representatives.contigs.drepped.if_ujsn')
+    assert exists(pth), 'Could not find database file at ' + pth
+    assert exists(splitext(pth)[0] + '.lens'), 'Could not find database file at ' + splitext(pth)[0] + '.lens'
+    assert exists(splitext(pth)[0] + '.idx'), 'Could not find database file at ' + splitext(pth)[0] + '.idx'
+    return CSeqDict.CSeqDict(pth, 18e9)
 
-cami_index = [join(split(realpath(__file__))[0], 'DataFiles/2017-10-CAMI_genomes.filtered.gem')]
+cami_index = [join(split(realpath(__file__))[0], '../DataFiles/2017-10-CAMI_genomes.filtered.gem')]
 
-cami_destdictf = join(split(realpath(__file__))[0], 'DataFiles/2017-10-CAMI_genomes.filtered.dests')
+cami_destdictf = join(split(realpath(__file__))[0], '../DataFiles/2017-10-CAMI_genomes.filtered.dests')
 
-genomes_index = sorted(glob(join(split(realpath(__file__))[0], 'DataFiles/GEMSplit/*.gem')))
+genomes_index = sorted(glob(join(split(realpath(__file__))[0], '../DataFiles/GEMSplit/*.gem')))
 
-genomes_destdictf = join(split(realpath(__file__))[0], 'DataFiles/representatives.contigs.drepped.dests')
+genomes_destdictf = join(split(realpath(__file__))[0], '../DataFiles/representatives.contigs.drepped.dests')
 
     

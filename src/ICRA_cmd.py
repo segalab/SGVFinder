@@ -27,20 +27,22 @@ def _addargs(parser):
     
     parser.add_argument('--dense_region_coverage', help = 'The percentage of the genome examined for coverage purposes.', default = 60, type = int)
     
-    parser.add_argument('--legnth_minimum', help = 'Minimal genome length considered,' , default = 1e5, type = float)
+    parser.add_argument('--length_minimum', help = 'Minimal genome length considered,' , default = 1e5, type = float)
     
     parser.add_argument('--length_maximum', help = 'Maximal genome length considered.', default = 2e7, type = float)
     
     parser.add_argument('--usage', help = 'Whether ICRA is mapping to the default db (genomes) or to the db used in the paper for CAMI (cami)', default = GENOMES, type = str, choices = [CAMI, GENOMES])
     
     parser.add_argument('--use_theta', help = 'Theta is an extra algorithmic components that causes ICRA to converge faster', action = 'store_true')
+    
+    parser.add_argument('--debug', help = 'Logs debug output', action = 'store_true')
                   
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO, format = '%(asctime)s-%(levelname)s: %(message)s')
     parser = argparse.ArgumentParser()
     _addargs(parser)
     args = parser.parse_args()
+    logging.basicConfig(level=(logging.DEBUG if args.debug else logging.INFO), format = '%(asctime)s-%(levelname)s: %(message)s')
     single_file(args.fq + ('_1.fastq' if args.pe else '.fastq'), (args.fq + '_2.fastq') if args.pe else None, \
-                 args.outfol, args.max_mismatch, not args.consider_lengths, args.epsilon, args.max_iterations, \
+                 args.outfol, args.max_mismatch, not args.ignore_lengths, args.epsilon, args.max_iterations, \
                  args.min_bins, args.max_bins, args.min_reads, args.dense_region_coverage, args.length_minimum, \
                  args.length_maximum, args.usage, args.use_theta)

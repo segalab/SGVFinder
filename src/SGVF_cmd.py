@@ -37,9 +37,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
     samp_to_map = {splitext(basename(f))[0]: _load_ujsn(f) for f in glob(args.input_glob)}
     if args.byother:
-        vsgv, dsgv = calculate_by_other(join(split(realpath(__file__))[0], 'DataFiles/orig_dsgv.df'),
-                           join(split(realpath(__file__))[0], 'DataFiles/orig_vsgv.df'),
-                           join(split(realpath(__file__))[0], 'DataFiles/orig_frames'), 
+        vsgv, dsgv = calculate_by_other(join(split(realpath(__file__))[0], '../DataFiles/orig_dsgv.df'),
+                           join(split(realpath(__file__))[0], '../DataFiles/orig_vsgv.df'),
+                           join(split(realpath(__file__))[0], '../DataFiles/orig_frames'), 
                            samp_to_map, args.real_del_thresh, args.vsgv_dense_perc, args.browser_path, args.x_coverage, args.rate_param)
     else:
         vsgv, dsgv = work_on_collection(samp_to_map, args.min_samp_cutoff, args.dels_detect_thresh, args.real_del_thresh, \
