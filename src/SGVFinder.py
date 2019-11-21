@@ -29,10 +29,10 @@ def get_sample_map(delta_fname, x_coverage, average_read_length, rate_param):
         for dest_id, pos1, pos2, used_koef, _ in mapngs:
             if dest_id not in bacid_maps:
                 bacid_maps[dest_id] = np.zeros(int(lengthdb[dest_id] / bin_size) + 1)
-            ind1 = int((pos1 + (average_read_length / 2)) / bin_size)
+            ind1 = int((int(pos1) + (int(average_read_length) / 2)) / bin_size)
             if pos2 >= 0:
                 used_koef = used_koef / 2.0
-                ind2 = int((pos2 + (average_read_length / 2)) / bin_size)
+                ind2 = int((int(pos2) + (int(average_read_length) / 2)) / bin_size)
                 bacid_maps[dest_id][ind2] += used_koef
             bacid_maps[dest_id][ind1] += used_koef
     return {dest_id:cov_map for dest_id, cov_map in bacid_maps.iteritems()\

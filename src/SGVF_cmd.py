@@ -12,7 +12,7 @@ def _addargs(parser):
     parser.add_argument('input_glob', help = 'A glob string that includes all the files processed with the PerFile_cmd')
     parser.add_argument('output_dsgv', help = 'Output path for the deletion-sgv dataframe. By default a pickled pandas dataframe')
     parser.add_argument('output_vsgv', help = 'Output path for the variable-sgv dataframe. By default a pickled pandas dataframe')
-    parser.add_argument('--x_coverage', help = 'The desired coverage across the genome in units of 100bp reads. This parameter is used to determine bin size: bin_size = rate_param/x_coverage (Default = 0.1)', type=float, default = 0.1)
+    parser.add_argument('--x_coverage', help = 'The desired coverage across the genome in units of 100bp reads. This parameter is used to determine bin size: bin_size = rate_param/x_coverage (Default = 0.1)', type=float, default = 0.01)
     parser.add_argument('--rate_param', help = 'The lower limit for the median number of reads per genomic bin. Genomes with coverage lower than rate_param will be discarded from the analysis (Default = 10)', type = int, default = 10)
     parser.add_argument('--byorig', help = 'Calculate SGVs according to the regions published by Zeevi et al, XXX, 201Y.', action = 'store_true')
     parser.add_argument('--min_samp_cutoff', help = 'Minimum number of samples in which a microbe exists with sufficient coverage to be considered in the analysis (Default=75)', type=int, default = 75)
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     _addargs(parser)
     args = parser.parse_args()
     samp_to_map = {splitext(basename(f))[0]: _load_ujsn(f) for f in glob(args.input_glob)}
-    if args.byother:
+    if args.byorig:
         vsgv, dsgv = calculate_by_other(join(split(realpath(__file__))[0], '../DataFiles/orig_dsgv.df'),
                            join(split(realpath(__file__))[0], '../DataFiles/orig_vsgv.df'),
                            join(split(realpath(__file__))[0], '../DataFiles/orig_frames'), 
