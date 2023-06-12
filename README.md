@@ -1,7 +1,7 @@
 # ICRA and SGVFinder
 
 This code corrects read assignments by coverage based redistribution
-of ambiguously mapped reads. It then uses these correded assignments
+of ambiguously mapped reads. It then uses these corrected assignments
 to detect structural variants that are either variable across a cohort
 or deleted across 25-75% of it. 
 This code was used for the paper "Structural variation in the gut 
